@@ -1,45 +1,45 @@
 The README.md file contains the following:
 
-The project's name: SE_Project_React
+## The project's name: SE_Project_React
 
-- A description of the project :
+## A description of the project :
 
-  - This project is created using full-stack web application called "WTWR".
-  - This application wil read weather data from a Weather API and the recommend suitable clothing to the user based on that data.
-  - The app features an intuitive interface for users to add, view, and categorize their garments based on different weather conditions: It incorporates a modal interface for adding new garments and provides a user-friendly way to interact with clothing option.
+- This project is created using full-stack web application called "WTWR".
+- This application wil read weather data from a Weather API and the recommend suitable clothing to the user based on that data.
+- The app features an intuitive interface for users to add, view, and categorize their garments based on different weather conditions: It incorporates a modal interface for adding new garments and provides a user-friendly way to interact with clothing option.
 
-- and its functionality:
+## and its functionality:
 
-  1. User interface:
+1. User interface:
 
-  - A clean and modern layout with a responsive design for seamless use on various devices.
-  - A header that displays the current date and user information
+- A clean and modern layout with a responsive design for seamless use on various devices.
+- A header that displays the current date and user information
 
-  2. Garment Mangement:
+2. Garment Mangement:
 
-  - Users can add clothing items through a modal form, specifying details such as the garment type, weather suitability, and images.
-  - Each garment can be categorized as suitable for day or night wear and based on weather conditions (e.g., sunny, rainy).
+- Users can add clothing items through a modal form, specifying details such as the garment type, weather suitability, and images.
+- Each garment can be categorized as suitable for day or night wear and based on weather conditions (e.g., sunny, rainy).
 
-  3. Modal Interactions:
+3. Modal Interactions:
 
-  - Modal windows are used for adding garments, with functionality to open and close the modal.
-  - Users can close the modal by clicking outside of it or pressing the Escape key.
+- Modal windows are used for adding garments, with functionality to open and close the modal.
+- Users can close the modal by clicking outside of it or pressing the Escape key.
 
-  4. Weather Integration:
+4. Weather Integration:
 
-  - The app retrieves and displays weather data to suggest suitable clothing options based on current weather conditions.
-  - Users can filter garments based on whether it’s day or night and the specific weather condition.
+- The app retrieves and displays weather data to suggest suitable clothing options based on current weather conditions.
+- Users can filter garments based on whether it’s day or night and the specific weather condition.
 
-    5. Event Handling:
+5. Event Handling:
 
-  - TThe application uses event listeners to handle clicks and key presses effectively, ensuring that users can easily interact with the modal and navigate through the app.
+- TThe application uses event listeners to handle clicks and key presses effectively, ensuring that users can easily interact with the modal and navigate through the app.
 
-- A description of the technologies and techniques used:
+## A description of the technologies and techniques used:
 
-  # React.js
+# React.js
 
-  Overview: A popular JavaScript library for building user interfaces, React.js allows for the creation of reusable UI components, which leads to a more organized and maintainable codebase.
-  Benefits: React’s component-based architecture enables the development of dynamic and interactive web applications, improving user experience by updating only parts of the interface that change.
+Overview: A popular JavaScript library for building user interfaces, React.js allows for the creation of reusable UI components, which leads to a more organized and maintainable codebase.
+Benefits: React’s component-based architecture enables the development of dynamic and interactive web applications, improving user experience by updating only parts of the interface that change.
 
 # JavaScript (ES6+)
 
