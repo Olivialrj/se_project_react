@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  src: url(../vendor/fonts/Poppins/Poppins-Rsrc/vendor/fonts/CabinetGrotesk-Bold.ttfegular.ttf)
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk";
+  font-style: normal;
+  font-weight: 500;
+  src: url(../vendor/fonts/src/vendor/fonts/CabinetGrotesk-Medium.ttf/Poppins-Medium.ttf)
+    format("truetype");
+}

@@ -1,0 +1,37 @@
+.modal {
+  background-color: #0000004d;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+}
+
+.modal__content {
+  border-radius: 16px;
+  background-color: white;
+  position: relative;
+}
+.modal__close {
+  position: absolute;
+}
+
+.modal__image {
+  border-radius: 16px;
+}
+
+.card__footer {
+  display: flex;
+  text-align: start;
+  flex-direction: column;
+  margin-left: 32px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.modal__caption {
+  margin: 0 0 12px 0;
+}
+
+.modal__weather {
+  margin: 0;
+}

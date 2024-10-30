@@ -1,0 +1,13 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 85px 0 24px 0;
+}
+
+.footer__copyright {
+  margin: 0;
+}
+
+.footer__year {
+  margin: 0;
+}

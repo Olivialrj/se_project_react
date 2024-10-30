@@ -1,0 +1,99 @@
+.modal {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+}
+
+.modal__container {
+  background-color: white;
+  min-width: 496px;
+  padding: 28px 28px 36px 28px;
+  position: relative;
+  border-radius: 20px;
+}
+
+.modal__header {
+  margin: 0 0 24px 0;
+  text-align: start;
+}
+
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__form-label {
+  text-align: start;
+  margin-bottom: 8px;
+}
+
+.modal__form-input {
+  padding-bottom: 4px;
+  margin-bottom: 24px;
+  border: none;
+  border-bottom: solid 1px black;
+}
+
+.modal__radio-btns {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  padding: 0;
+}
+
+.modal__weather-caption {
+  text-align: start;
+  margin-bottom: 12px;
+}
+
+.modal__label {
+  text-align: start;
+  margin-bottom: 8px;
+}
+
+.modal__label_type_radio {
+  color: #00000080;
+}
+
+.modal__radio-input {
+  margin-right: 8px;
+}
+
+.modal__label_type_radio:has(input:checked) {
+  color: black;
+}
+
+.modal__button {
+  max-width: 124px;
+  padding: 8px 16px;
+  margin-top: 24px;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  background: #0000004d;
+}
+
+.modal_visible {
+  visibility: visible;
+}
