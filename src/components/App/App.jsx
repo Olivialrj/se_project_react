@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
 import "./App.css";
-import { coordinates, APIKey } from "../../utilis/constants";
+import { coordinates, APIKey } from "../../utils/constants";
 import Main from "../Main/Main";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
-import { getWeather, filterWeather } from "../../utilis/weatherApi";
+import { getWeather, filterWeather } from "../../utils/weatherApi";
 
 function App() {
   const [weatherData, setWeatherData] = useState({

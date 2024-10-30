@@ -1,6 +1,6 @@
 import "./WeatherCard.css";
 // import sunny from "../../assets/sunny.png";
-import { defaultWeatherOptions, weatherOptions } from "../../utilis/constants";
+import { defaultWeatherOptions, weatherOptions } from "../../utils/constants";
 
 function WeatherCard({ weatherData }) {
   const filteredOptions = weatherOptions.filter((option) => {
