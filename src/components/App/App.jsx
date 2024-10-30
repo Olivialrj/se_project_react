@@ -31,19 +31,19 @@ function App() {
     setActiveModal("");
   };
 
-  const handleEscapeKeyPress = (e) => {
-    if (e.key === "Escape") {
-      closeActiveModal();
-    }
-  };
-
-  const handleClickOutside = (e) => {
-    if (e.target.classList.contains("modal")) {
-      closeActiveModal();
-    }
-  };
-
   useEffect(() => {
+    const handleEscapeKeyPress = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    const handleClickOutside = (e) => {
+      if (e.target.classList.contains("modal")) {
+        closeActiveModal();
+      }
+    };
+
     if (activeModal) {
       document.addEventListener("keydown", handleEscapeKeyPress);
       document.addEventListener("mousedown", handleClickOutside);
@@ -53,6 +53,7 @@ function App() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [activeModal]);
+
   useEffect(() => {
     getWeather(coordinates, APIKey)
       .then((res) => {
@@ -72,7 +73,7 @@ function App() {
       <ModalWithForm
         title="New garment"
         buttonText="Add garment"
-        activeModal={activeModal}
+        isOpen={activeModal === "add-garment"}
         onClose={closeActiveModal}
       >
         <label htmlFor="name" className="modal__form-label">
@@ -97,7 +98,7 @@ function App() {
           <legend className="modal__weather-caption">
             Select the weather type:
           </legend>
-          <label htmlFor="Hot" className="modal__label modal__label_type_radio">
+          <label className="modal__label modal__label_type_radio">
             <input
               id="hot"
               type="radio"
@@ -106,10 +107,7 @@ function App() {
             />
             Hot
           </label>
-          <label
-            htmlFor="warm"
-            className="modal__label modal__label_type_radio"
-          >
+          <label className="modal__label modal__label_type_radio">
             <input
               id="warm"
               type="radio"
@@ -118,10 +116,7 @@ function App() {
             />
             Warm
           </label>
-          <label
-            htmlFor="cold"
-            className="modal__label modal__label_type_radio"
-          >
+          <label className="modal__label modal__label_type_radio">
             <input
               id="cold"
               type="radio"

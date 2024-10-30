@@ -4,9 +4,6 @@ import { defaultWeatherOptions, weatherOptions } from "../../utils/constants";
 
 function WeatherCard({ weatherData }) {
   const filteredOptions = weatherOptions.filter((option) => {
-    console.log(option);
-    console.log(weatherData);
-
     return (
       option.day === weatherData.isDay &&
       option.condition === weatherData.condition
