@@ -24,4 +24,5 @@
   width: 325px;
   border-radius: 19px;
   border: solid 1px #0000004d;
+  object-fit: cover;
 }

@@ -1,19 +1,24 @@
 .modal {
   background-color: #0000004d;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
+  position: fixed;
 }
 
 .modal__content {
   border-radius: 16px;
   background-color: white;
   position: relative;
+  /* overflow: hidden; */
 }
 .modal__close {
   position: absolute;
 }
 
 .modal__image {
+  max-width: 100%; /* Ensure image does not overflow */
+  max-height: 60vh;
   border-radius: 16px;
+  object-fit: contain;
 }
 
 .modal__footer {
