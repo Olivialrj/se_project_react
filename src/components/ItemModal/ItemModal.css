@@ -20,18 +20,26 @@
   display: flex;
   text-align: start;
   flex-direction: column;
-  margin-left: 32px;
-  margin-top: 20px;
-  margin-bottom: 32px;
+  margin: 20px 32px 32px 32px;
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
+}
+.modal__footer-2 {
+  display: flex;
+  justify-content: space-between;
 }
 
 .modal__caption {
   margin: 0 0 12px 0;
 }
-
+.modal__delete {
+  color: #ff4d00;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  font-size: 20px;
+}
 .modal__weather {
   margin: 0;
 }
