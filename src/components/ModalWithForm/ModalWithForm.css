@@ -91,7 +91,10 @@
   border-radius: 4px;
   color: white;
   border: none;
-  background: #0000004d;
+  background: black;
+}
+.modal__button:hover {
+  background-color: #00000099;
 }
 
 .modal_visible {

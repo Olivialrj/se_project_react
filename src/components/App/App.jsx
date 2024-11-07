@@ -11,6 +11,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeather } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { getItems, deleteItems, postItems } from "../../utils/api";
+import AddItemModal from "../AddItemModal/AddItemModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -22,20 +23,21 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState(`F`);
   const [clothingItems, setClothingItems] = useState([]);
-  const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [weather, setWeather] = useState("");
+  // const [name, setName] = useState("");
+  // const [imageUrl, setImageUrl] = useState("");
+  // const [weather, setWeather] = useState("");
+  // const handleWeatherChange = (e) => setWeather(e.target.value);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-    console.log(card);
   };
-
-  const handleWeatherChange = (e) => setWeather(e.target.value);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
+  };
+  const handleAddClickItem = () => {
+    setActiveModal("add-item");
   };
   const handleProfileClick = () => {
     setActiveModal("profile-modal");
@@ -51,19 +53,15 @@ function App() {
 
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
     postItems({ name, imageUrl, weather })
-      .then(() => {
-        getItems()
-          .then((data) => {
-            setClothingItems(data);
-          })
-          .catch(console.error);
-        setActiveModal("");
+      .then((newItem) => {
+        // Update the clothingItems array with the new item
+        setClothingItems([newItem, ...clothingItems]);
+        closeActiveModal();
       })
       .catch(console.error);
   };
 
   const handleDeleteItem = (id) => {
-    console.log("Deleting item with id:", id);
     deleteItems(id)
       .then(() => {
         setClothingItems((previousItems) =>
@@ -142,6 +140,7 @@ function App() {
                 <Profile
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  handleAddItemModal={handleAddClickItem}
                 />
               }
             />
@@ -164,8 +163,8 @@ function App() {
             className="modal__form-input"
             id="name"
             placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            // value={name}
+            // onChange={(e) => setName(e.target.value)}
           />
           <label htmlFor="imageURL" className="modal__form-label">
             Image
@@ -175,8 +174,8 @@ function App() {
             className="modal__form-input"
             id="imageURL"
             placeholder="Image URL"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
+            // value={imageUrl}
+            // onChange={(e) => setImageUrl(e.target.value)}
           />
           <fieldset className="modal__radio-btns">
             <legend className="modal__weather-caption">
@@ -189,8 +188,8 @@ function App() {
                 className="modal__radio-input"
                 name="weather_type"
                 value="hot"
-                checked={weather === "hot"}
-                onChange={handleWeatherChange}
+                // checked={weather === "hot"}
+                // onChange={handleWeatherChange}
               />
               Hot
             </label>
@@ -201,8 +200,8 @@ function App() {
                 className="modal__radio-input"
                 name="weather_type"
                 value="warm"
-                checked={weather === "warm"}
-                onChange={handleWeatherChange}
+                // checked={weather === "warm"}
+                // onChange={handleWeatherChange}
               />
               Warm
             </label>
@@ -213,8 +212,8 @@ function App() {
                 className="modal__radio-input"
                 name="weather_type"
                 value="cold"
-                checked={weather === "cold"}
-                onChange={handleWeatherChange}
+                // checked={weather === "cold"}
+                // onChange={handleWeatherChange}
               />
               Cold
             </label>
@@ -225,6 +224,11 @@ function App() {
           card={selectedCard}
           onClose={closeActiveModal}
           onDeleteItem={handleDeleteItem}
+        />
+        <AddItemModal
+          isOpen={activeModal === "add-item"}
+          onCloseModal={closeActiveModal}
+          onAddItem={handleAddItemSubmit}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

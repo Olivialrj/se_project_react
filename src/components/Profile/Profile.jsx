@@ -2,10 +2,7 @@ import "./Profile.css";
 import SideBar from "./SideBar/SideBar";
 import ClothesSection from "./ClothesSection/ClothesSection";
 
-function Profile({ onCardClick, clothingItems }) {
-  const handleCardClick = () => {
-    onCardClick(item);
-  };
+function Profile({ handleCardClick, clothingItems, handleAddItemModal }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
@@ -13,8 +10,9 @@ function Profile({ onCardClick, clothingItems }) {
       </section>
       <section className="profile__clothing-items">
         <ClothesSection
-          onCardClick={handleCardClick}
+          handleCardClick={handleCardClick}
           clothingItems={clothingItems}
+          handleAddItemModal={handleAddItemModal}
         />
       </section>
     </div>
