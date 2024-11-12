@@ -7,6 +7,7 @@ import Header from "../Header/Header";
 import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import DeleteModal from "../DeleteModal/DeleteModal";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeather } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -21,6 +22,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [selectedItemId, setSelectedItemId] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState(`F`);
   const [clothingItems, setClothingItems] = useState([]);
   const [name, setName] = useState("");
@@ -39,11 +41,16 @@ function App() {
   const handleAddClickItem = () => {
     setActiveModal("add-item");
   };
-  const handleProfileClick = () => {
-    setActiveModal("profile-modal");
+
+  const openConfirmationModal = (itemId) => {
+    console.log("Opening delete confirmation modal for item ID:", itemId);
+    setSelectedItemId(itemId);
+    setActiveModal("delete-modal");
   };
+
   const closeActiveModal = () => {
     setActiveModal("");
+    setSelectedItemId(null);
   };
 
   const handleToggleSwitchChange = () => {
@@ -64,11 +71,11 @@ function App() {
       });
   };
 
-  const handleDeleteItem = (id) => {
-    deleteItems(id)
+  const handleDeleteItem = () => {
+    deleteItems(selectedItemId)
       .then(() => {
         setClothingItems((previousItems) =>
-          previousItems.filter((item) => item._id !== id)
+          previousItems.filter((item) => item._id !== selectedItemId)
         );
         closeActiveModal();
       })
@@ -124,7 +131,7 @@ function App() {
           <Header
             handleAddClick={handleAddClick}
             weatherData={weatherData}
-            handleProfileClick={handleProfileClick}
+            // handleProfileClick={handleProfileClick}
           />
           <Routes>
             <Route
@@ -226,7 +233,12 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
-          onDeleteItem={handleDeleteItem}
+          openConfirmationModal={openConfirmationModal}
+        />
+        <DeleteModal
+          onClose={closeActiveModal}
+          handleDeleteItem={handleDeleteItem}
+          isOpen={activeModal === "delete-modal"}
         />
         <AddItemModal
           isOpen={activeModal === "add-item"}

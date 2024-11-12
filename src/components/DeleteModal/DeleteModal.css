@@ -1,0 +1,60 @@
+.delete-modal {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+}
+
+.delete-modal__container {
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid #0000004d;
+  position: relative;
+  padding: 60px 152px 60px 151px;
+}
+
+.modal__close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+}
+
+.modal__header {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 20px;
+}
+
+.modal__btn-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+.modal__confirm-btn {
+  background: transparent;
+  border: none;
+  color: red;
+  margin-bottom: 24px;
+  padding: 0;
+}
+.modal__cancel-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.modal_visible {
+  visibility: visible;
+}

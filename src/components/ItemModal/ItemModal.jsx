@@ -1,7 +1,7 @@
 import "./ItemModal.css";
 import closeIcon from "../../assets/closeicon.svg";
 
-function ItemModal({ activeModal, card, onClose, onDeleteItem }) {
+function ItemModal({ activeModal, card, onClose, openConfirmationModal }) {
   return (
     <div className={`modal ${activeModal === "preview" && "modal_visible"}`}>
       <div className="modal__content modal__content_type_image">
@@ -16,7 +16,10 @@ function ItemModal({ activeModal, card, onClose, onDeleteItem }) {
               className="modal__delete"
               alt="delete-button"
               type="submit"
-              onClick={() => onDeleteItem(card._id)}
+              onClick={() => {
+                console.log("Delete button clicked for item ID:", card._id);
+                openConfirmationModal(card._id);
+              }}
             >
               Delete Item
             </button>

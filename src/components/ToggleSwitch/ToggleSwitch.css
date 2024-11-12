@@ -25,16 +25,22 @@
   text-align: center;
   cursor: pointer;
   position: absolute;
+  transition: transform 0.3s ease;
 }
 
 .switch__slider-F {
-  /* top: 3px; */
   left: 28px;
+}
+.switch__slider-F:hover {
+  transform: translateX(2px); /* Move 2px to the right on hover */
 }
 
 .switch__slider-C {
-  /* top: 3px;
-  left: 5px; */
+  left: 0;
+}
+
+.switch__slider-C:hover {
+  transform: translateX(2px); /* Move 2px to the right on hover */
 }
 
 .switch__temp-F {
