@@ -23,10 +23,10 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState(`F`);
   const [clothingItems, setClothingItems] = useState([]);
-  // const [name, setName] = useState("");
-  // const [imageUrl, setImageUrl] = useState("");
-  // const [weather, setWeather] = useState("");
-  // const handleWeatherChange = (e) => setWeather(e.target.value);
+  const [name, setName] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [weather, setWeather] = useState("");
+  const handleWeatherChange = (e) => setWeather(e.target.value);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -51,14 +51,17 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
+  const handleAddItemSubmit = (e) => {
+    e.preventDefault();
     postItems({ name, imageUrl, weather })
       .then((newItem) => {
         // Update the clothingItems array with the new item
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Error adding item:", error);
+      });
   };
 
   const handleDeleteItem = (id) => {
@@ -163,8 +166,8 @@ function App() {
             className="modal__form-input"
             id="name"
             placeholder="Name"
-            // value={name}
-            // onChange={(e) => setName(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <label htmlFor="imageURL" className="modal__form-label">
             Image
@@ -174,8 +177,8 @@ function App() {
             className="modal__form-input"
             id="imageURL"
             placeholder="Image URL"
-            // value={imageUrl}
-            // onChange={(e) => setImageUrl(e.target.value)}
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
           />
           <fieldset className="modal__radio-btns">
             <legend className="modal__weather-caption">
@@ -188,8 +191,8 @@ function App() {
                 className="modal__radio-input"
                 name="weather_type"
                 value="hot"
-                // checked={weather === "hot"}
-                // onChange={handleWeatherChange}
+                checked={weather === "hot"}
+                onChange={handleWeatherChange}
               />
               Hot
             </label>
@@ -200,8 +203,8 @@ function App() {
                 className="modal__radio-input"
                 name="weather_type"
                 value="warm"
-                // checked={weather === "warm"}
-                // onChange={handleWeatherChange}
+                checked={weather === "warm"}
+                onChange={handleWeatherChange}
               />
               Warm
             </label>
@@ -212,8 +215,8 @@ function App() {
                 className="modal__radio-input"
                 name="weather_type"
                 value="cold"
-                // checked={weather === "cold"}
-                // onChange={handleWeatherChange}
+                checked={weather === "cold"}
+                onChange={handleWeatherChange}
               />
               Cold
             </label>
@@ -228,7 +231,7 @@ function App() {
         <AddItemModal
           isOpen={activeModal === "add-item"}
           onCloseModal={closeActiveModal}
-          onAddItem={handleAddItemSubmit}
+          onAddItem={handleAddClick}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
