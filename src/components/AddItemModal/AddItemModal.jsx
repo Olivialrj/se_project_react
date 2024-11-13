@@ -21,16 +21,17 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Submitting:", { name, imageUrl, weather });
     onAddItem({ name, imageUrl, weather });
   };
 
   return (
     <ModalWithForm
-      title="New Item"
-      buttonText="Add Item"
+      title="New garment"
+      buttonText="Add garment"
       isOpen={isOpen}
       onClose={onCloseModal}
-      handleAddItemSubmit={handleSubmit}
+      handleSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__form-label">
         Name
