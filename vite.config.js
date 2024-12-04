@@ -7,6 +7,6 @@ export default defineConfig({
   plugins: [react()],
   // add the server object
   server: {
-    port: 3000,
+    port: 3001,
   },
 });

@@ -1,0 +1,41 @@
+.register {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+}
+
+.modal__register {
+  background-color: white;
+  min-width: 496px;
+  padding: 29px 28px 36px 28px;
+  border-radius: 20px;
+  border: 1px solid #0000004d;
+  position: relative;
+}
+
+.modal__buttons {
+  text-align: start;
+}
+
+.modal__form-input:last-of-type {
+  margin-bottom: 30px;
+}
+
+.modal__login-link {
+  color: #00000080;
+  background-color: transparent;
+  border: none;
+}
+
+.modal_visible {
+  visibility: visible;
+}

@@ -1,0 +1,67 @@
+import { useState } from "react";
+import "./LoginModal.css";
+import closeIcon from "../../assets/closeicon.svg";
+
+const LoginModal = ({ onClose, handleLogin, isOpen }) => {
+  const [data, setData] = useState({ email: "", password: "" });
+
+  const handleChange = (e) => {
+    // const { name, value } = e.target;
+    // setData((prevData) => ({
+    //   ...prevData,
+    //   [name]: value,
+    setData((prevState) => ({
+      ...prevState,
+      [e.target.id]: event.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLogin(data);
+  };
+
+  return (
+    <div className={`modal login ${isOpen ? "modal_visible" : ""}`}>
+      <div className="modal__login">
+        <p className="modal__header">Log in</p>
+        <button className="modal__close" onClick={onClose}>
+          <img src={closeIcon} alt="close-icon" className="modal__close-img" />
+        </button>
+        <form action="" className="modal__form" onSubmit={handleSubmit}>
+          <label htmlFor="login-email" className="modal__form-label">
+            Email
+          </label>
+          <input
+            type="email"
+            className="modal__form-input"
+            id="email"
+            placeholder="Email"
+            value={data.email}
+            onChange={handleChange}
+          />
+          <label htmlFor="login-password" className="modal__form-label">
+            Password
+          </label>
+          <input
+            type="password"
+            className="modal__form-input"
+            id="password"
+            placeholder="Password"
+            value={data.password}
+            onChange={handleChange}
+          />
+          <div className="modal__buttons">
+            <button className="modal__button" type="submit">
+              Log in
+            </button>
+            <button type="button " className="modal__register-link">
+              or Sign Up
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+export default LoginModal;

@@ -1,0 +1,57 @@
+.login {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+}
+
+.modal__login {
+  background-color: white;
+  min-width: 496px;
+  padding: 29px 28px 36px 28px;
+  border-radius: 20px;
+  border: 1px solid #0000004d;
+  position: relative;
+}
+
+.modal__header {
+  font-size: 16px;
+}
+
+.modal__form-label {
+  margin-bottom: 8px;
+}
+
+.modal__form-input {
+  border: 1px underline #000000;
+}
+
+.modal__form-input:last-child {
+  margin-bottom: 32px;
+}
+
+.modal__button {
+  padding: 8px 16px;
+  margin: 0;
+  margin-right: 12px;
+  border-radius: 4px;
+}
+
+.modal__register-link {
+  color: #00000080;
+  border: none;
+  background-color: transparent;
+}
+
+.modal_visible {
+  visibility: visible;
+}
