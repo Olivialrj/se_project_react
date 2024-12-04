@@ -5,11 +5,11 @@ import { useContext } from "react";
 
 function ItemModal({ activeModal, card, onClose, openConfirmationModal }) {
   const currentUser = useContext(CurrentUserContext);
-  const isOwn = card?.owner?._id === currentUser?._id;
+  const isOwn = card?.ownergit === currentUser?._id;
 
-  console.log("Card Owner:", card.owner);
-  console.log("Current User:", currentUser);
-  console.log("Is Own:", isOwn);
+  // console.log("Card Owner:", card.owner);
+  // console.log("Current User:", currentUser);
+  // console.log("Is Own:", isOwn);
 
   return (
     <div className={`modal ${activeModal === "preview" && "modal_visible"}`}>
@@ -27,7 +27,6 @@ function ItemModal({ activeModal, card, onClose, openConfirmationModal }) {
                 alt="delete-button"
                 type="submit"
                 onClick={() => {
-                  console.log("Delete button clicked for item ID:", card._id);
                   openConfirmationModal(card._id);
                 }}
               >
