@@ -136,24 +136,27 @@ function App() {
   };
 
   const handleCardLike = ({ id, isLiked }) => {
+    console.log("testing");
     !isLiked
       ? api
           .addCardLike(id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+              cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
           })
           .catch((err) => console.log(err))
       : api
           .removeCardLike(id)
           .then((updatedCard) => {
+            console.log(clothingItems, updatedCard);
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+              cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
           })
           .catch((err) => console.log(err));
   };
+  console.log(clothingItems);
 
   const handleLogout = () => {
     removeToken();

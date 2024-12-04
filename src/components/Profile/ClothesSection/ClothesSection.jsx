@@ -10,9 +10,9 @@ const ClothesSection = ({
   clothingItems,
 }) => {
   const currentUser = useContext(CurrentUserContext);
-  const userClothingItems = clothingItems.filter((item) => {
-    return item.owner._id === currentUser._id;
-  });
+  const userClothingItems = clothingItems.filter(
+    (item) => item.owner === currentUser._id
+  );
 
   console.log("UCI:", userClothingItems);
 
