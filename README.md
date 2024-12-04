@@ -1,5 +1,9 @@
 The README.md file contains the following:
 
+## Link to Backend :
+
+https://github.com/Olivialrj/se_project_express
+
 ## The project's name: SE_Project_React
 
 ## A description of the project :
