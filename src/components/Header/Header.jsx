@@ -4,7 +4,7 @@ import logo from "../../assets/Logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { useContext } from "react";
-import CurrentUserContext from "../../contexts/ CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Header({
   handleAddClick,

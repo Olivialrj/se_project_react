@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import CurrentUserContext from "../../contexts/ CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./ItemCard.css";
 // import likebtn from "../../assets/Like button.png";
 // import likedbtn from "../../assets/Liked-icon.png";

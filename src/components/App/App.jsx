@@ -15,7 +15,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { getWeather, filterWeather } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import CurrentUserContext from "../../contexts/ CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { getToken, removeToken, setToken } from "../../utils/token";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
@@ -156,7 +156,6 @@ function App() {
           })
           .catch((err) => console.log(err));
   };
-  console.log(clothingItems);
 
   const handleLogout = () => {
     removeToken();

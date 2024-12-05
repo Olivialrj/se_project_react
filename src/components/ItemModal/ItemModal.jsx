@@ -1,11 +1,11 @@
 import "./ItemModal.css";
 import closeIcon from "../../assets/closeicon.svg";
-import CurrentUserContext from "../../contexts/ CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
 function ItemModal({ activeModal, card, onClose, openConfirmationModal }) {
   const currentUser = useContext(CurrentUserContext);
-  const isOwn = card?.ownergit === currentUser?._id;
+  const isOwn = card?.owner === currentUser?._id;
 
   // console.log("Card Owner:", card.owner);
   // console.log("Current User:", currentUser);
