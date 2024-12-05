@@ -5,14 +5,23 @@ import closeIcon from "../../assets/closeicon.svg";
 const EditProfileModal = ({ handleEditProfile, onClose, isOpen }) => {
   const [data, setData] = useState({ name: "", avatar: "" });
 
+  // const handleChange = (e) => {
+  //   // const { name, value } = e.target;
+  //   // setData((prevData) => ({
+  //   //   ...prevData,
+  //   //   [name]: value,
+  //   setData((prevState) => ({
+  //     ...prevState,
+  //     [e.target.id]: event.target.value,
+  //   }));
+  // };
+
   const handleChange = (e) => {
-    // const { name, value } = e.target;
-    // setData((prevData) => ({
-    //   ...prevData,
-    //   [name]: value,
+    const { id, value } = e.target;
+    const key = id.replace("update-", ""); // Strip "update-" to match the state keys
     setData((prevState) => ({
       ...prevState,
-      [e.target.id]: event.target.value,
+      [key]: value,
     }));
   };
 

@@ -14,8 +14,6 @@ const ClothesSection = ({
     (item) => item.owner === currentUser._id
   );
 
-  console.log("UCI:", userClothingItems);
-
   return (
     <div className="clothes-section">
       <div className="clothes-section__profile">

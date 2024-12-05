@@ -3,7 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import "./RegisterModal.css";
 import closeIcon from "../../assets/closeicon.svg";
 
-const RegisterModal = ({ onClose, handleRegistration, isOpen }) => {
+const RegisterModal = ({
+  onClose,
+  handleRegistration,
+  isOpen,
+  handleLoginClick,
+}) => {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -37,31 +42,31 @@ const RegisterModal = ({ onClose, handleRegistration, isOpen }) => {
           <input
             type="email"
             className="modal__form-input"
-            id="register-email"
+            id="email"
             placeholder="Email"
             value={data.email}
             onChange={handleChange}
             required
           />
-          <label htmlFor="register-password" className="modal__form-label">
+          <label htmlFor="password" className="modal__form-label">
             Password *
           </label>
           <input
             type="password"
             className="modal__form-input"
-            id="register-password"
+            id="password"
             placeholder="Password"
             value={data.password}
             onChange={handleChange}
             required
           />
-          <label htmlFor="register-name" className="modal__form-label">
+          <label htmlFor="name" className="modal__form-label">
             Name *
           </label>
           <input
             type="text"
             className="modal__form-input"
-            id="register-name"
+            id="name"
             placeholder="Name"
             value={data.name}
             onChange={handleChange}
@@ -72,7 +77,7 @@ const RegisterModal = ({ onClose, handleRegistration, isOpen }) => {
           <input
             type="URL"
             className="modal__form-input"
-            id="register-avatarUrl"
+            id="avatarUrl"
             placeholder="Avatar URL"
             value={data.avatarUrl}
             onChange={handleChange}
@@ -82,7 +87,11 @@ const RegisterModal = ({ onClose, handleRegistration, isOpen }) => {
             <button className="modal__button" type="submit">
               Sign Up
             </button>
-            <button type="button " className="modal__login-link">
+            <button
+              type="button"
+              onClick={handleLoginClick}
+              className="modal__login-link"
+            >
               or Log in
             </button>
           </div>
