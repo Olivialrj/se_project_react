@@ -52,7 +52,7 @@ function Header({
             <NavLink to="/profile" className="test">
               <div className="header__user-container">
                 <p className="header__username">{currentUser.name}</p>
-                {renderAvatar(currentUser.avatar, currentUser.name)}
+                {renderAvatar(currentUser.avatarUrl, currentUser.name)}
               </div>
             </NavLink>
           </>

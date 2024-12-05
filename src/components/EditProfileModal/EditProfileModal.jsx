@@ -28,6 +28,7 @@ const EditProfileModal = ({ handleEditProfile, onClose, isOpen }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleEditProfile(data);
+    console.log(data);
   };
   return (
     <div className={`modal edit-profile ${isOpen ? "modal_visible" : ""}`}>

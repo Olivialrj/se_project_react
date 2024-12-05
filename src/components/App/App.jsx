@@ -88,6 +88,7 @@ function App() {
       .editProfile(updatedData)
       .then((newUserData) => {
         setCurrentUser(newUserData);
+        console.log(newUserData);
         closeActiveModal();
       })
       .catch(console.error);

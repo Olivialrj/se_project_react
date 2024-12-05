@@ -16,7 +16,7 @@ const SideBar = ({ handleEditProfileClick, handleLogout }) => {
   return (
     <div className="sidebar">
       <div className="sidebar__profile">
-        {renderAvatar(currentUser.avatar, currentUser.name)}
+        {renderAvatar(currentUser.avatarUrl, currentUser.name)}
         <p className="sidebar__username"> {currentUser.name}</p>
       </div>
       <button
