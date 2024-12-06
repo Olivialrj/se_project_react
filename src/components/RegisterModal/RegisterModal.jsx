@@ -16,10 +16,19 @@ const RegisterModal = ({
     avatarUrl: "",
   });
 
-  const handleChange = (event) => {
+  // const handleChange = (event) => {
+  //   setData((prevState) => ({
+  //     ...prevState,
+  //     [event.target.id]: event.target.value, // Update specific field
+  //   }));
+  // };
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    const key = id.replace("register-", "");
     setData((prevState) => ({
       ...prevState,
-      [event.target.id]: event.target.value, // Update specific field
+      [key]: value,
     }));
   };
 
@@ -42,7 +51,7 @@ const RegisterModal = ({
           <input
             type="email"
             className="modal__form-input"
-            id="email"
+            id="register-email"
             placeholder="Email"
             value={data.email}
             onChange={handleChange}
@@ -54,7 +63,7 @@ const RegisterModal = ({
           <input
             type="password"
             className="modal__form-input"
-            id="password"
+            id="register-password"
             placeholder="Password"
             value={data.password}
             onChange={handleChange}
@@ -66,7 +75,7 @@ const RegisterModal = ({
           <input
             type="text"
             className="modal__form-input"
-            id="name"
+            id="register-name"
             placeholder="Name"
             value={data.name}
             onChange={handleChange}
@@ -77,7 +86,7 @@ const RegisterModal = ({
           <input
             type="URL"
             className="modal__form-input"
-            id="avatarUrl"
+            id="register-avatarUrl"
             placeholder="Avatar URL"
             value={data.avatarUrl}
             onChange={handleChange}

@@ -55,6 +55,15 @@
   border: 1px solid #00000080;
 }
 
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-items: center;
+  border: 1px solid #00000080;
+  justify-content: center;
+}
+
 .header__authorisation {
   font-size: 20px;
 }

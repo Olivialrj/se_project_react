@@ -13,6 +13,7 @@ const ClothesSection = ({
   const userClothingItems = clothingItems.filter(
     (item) => item.owner === currentUser._id
   );
+  console.log(userClothingItems);
 
   return (
     <div className="clothes-section">

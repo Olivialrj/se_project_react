@@ -5,14 +5,23 @@ import closeIcon from "../../assets/closeicon.svg";
 const LoginModal = ({ onClose, handleLogin, isOpen, handleRegisterClick }) => {
   const [data, setData] = useState({ email: "", password: "" });
 
+  // const handleChange = (e) => {
+  //   // const { name, value } = e.target;
+  //   // setData((prevData) => ({
+  //   //   ...prevData,
+  //   //   [name]: value,
+  //   setData((prevState) => ({
+  //     ...prevState,
+  //     [e.target.id]: event.target.value,
+  //   }));
+  // };
+
   const handleChange = (e) => {
-    // const { name, value } = e.target;
-    // setData((prevData) => ({
-    //   ...prevData,
-    //   [name]: value,
+    const { id, value } = e.target;
+    const key = id.replace("login-", ""); // Strip "update-" to match the state keys
     setData((prevState) => ({
       ...prevState,
-      [e.target.id]: event.target.value,
+      [key]: value,
     }));
   };
 
@@ -35,7 +44,7 @@ const LoginModal = ({ onClose, handleLogin, isOpen, handleRegisterClick }) => {
           <input
             type="email"
             className="modal__form-input"
-            id="email"
+            id="login-email"
             placeholder="Email"
             value={data.email}
             onChange={handleChange}
@@ -46,7 +55,7 @@ const LoginModal = ({ onClose, handleLogin, isOpen, handleRegisterClick }) => {
           <input
             type="password"
             className="modal__form-input"
-            id="password"
+            id="login-password"
             placeholder="Password"
             value={data.password}
             onChange={handleChange}

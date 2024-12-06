@@ -7,7 +7,12 @@ function checkResponse(res) {
 }
 
 const getItems = () => {
-  return fetch(`${baseUrl}/items`).then(checkResponse);
+  return fetch(`${baseUrl}/items`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(checkResponse);
 };
 
 const postItems = ({ name, imageUrl, weather }) => {

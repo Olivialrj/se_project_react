@@ -75,7 +75,8 @@ function App() {
       .postItems({ name, imageUrl, weather })
       .then((newItem) => {
         // Update the clothingItems array with the new item
-        setClothingItems([newItem, ...clothingItems]);
+        // setClothingItems([newItem, ...clothingItems]);
+        setClothingItems((prevItems) => [newItem, ...prevItems]);
         closeActiveModal();
       })
       .catch((error) => {
