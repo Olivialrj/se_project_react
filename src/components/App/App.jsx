@@ -76,7 +76,9 @@ function App() {
       .then((newItem) => {
         // Update the clothingItems array with the new item
         // setClothingItems([newItem, ...clothingItems]);
-        setClothingItems((prevItems) => [newItem, ...prevItems]);
+        setClothingItems((prevItems) => [newItem.data, ...prevItems]);
+        console.log(clothingItems);
+        console.log(newItem);
         closeActiveModal();
       })
       .catch((error) => {

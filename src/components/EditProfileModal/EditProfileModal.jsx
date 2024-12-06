@@ -3,7 +3,7 @@ import "./EditProfileModal.css";
 import closeIcon from "../../assets/closeicon.svg";
 
 const EditProfileModal = ({ handleEditProfile, onClose, isOpen }) => {
-  const [data, setData] = useState({ name: "", avatar: "" });
+  const [data, setData] = useState({ name: "", avatarUrl: "" });
 
   // const handleChange = (e) => {
   //   // const { name, value } = e.target;
@@ -18,7 +18,7 @@ const EditProfileModal = ({ handleEditProfile, onClose, isOpen }) => {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    const key = id.replace("update-", ""); // Strip "update-" to match the state keys
+    const key = id.replace("update-", "");
     setData((prevState) => ({
       ...prevState,
       [key]: value,
@@ -30,6 +30,7 @@ const EditProfileModal = ({ handleEditProfile, onClose, isOpen }) => {
     handleEditProfile(data);
     console.log(data);
   };
+
   return (
     <div className={`modal edit-profile ${isOpen ? "modal_visible" : ""}`}>
       <div className="modal__edit-profile">
@@ -51,9 +52,9 @@ const EditProfileModal = ({ handleEditProfile, onClose, isOpen }) => {
           <input
             type="url"
             className="modal__form-input"
-            id="update-avatar"
+            id="update-avatarUrl"
             placeholder="Avatar"
-            value={data.avatar}
+            value={data.avatarUrl}
             onChange={handleChange}
           />
           <button className="modal__button" type="submit">
