@@ -37,10 +37,8 @@ const LoginModal = ({ onClose, handleLogin, isOpen, handleRegisterClick }) => {
         <button className="modal__close" onClick={onClose}>
           <img src={closeIcon} alt="close-icon" className="modal__close-img" />
         </button>
-        <form action="" className="modal__form" onSubmit={handleSubmit}>
-          <label htmlFor="login-email" className="modal__form-label">
-            Email
-          </label>
+        <form className="modal__form" onSubmit={handleSubmit}>
+          <label className="modal__form-label">Email</label>
           <input
             type="email"
             className="modal__form-input"
@@ -49,9 +47,7 @@ const LoginModal = ({ onClose, handleLogin, isOpen, handleRegisterClick }) => {
             value={data.email}
             onChange={handleChange}
           />
-          <label htmlFor="login-password" className="modal__form-label">
-            Password
-          </label>
+          <label className="modal__form-label">Password</label>
           <input
             type="password"
             className="modal__form-input"

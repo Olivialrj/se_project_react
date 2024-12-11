@@ -45,9 +45,7 @@ const RegisterModal = ({
           <img src={closeIcon} alt="close-icon" className="modal__close-img" />
         </button>
         <form className="modal__form" onSubmit={handleSubmit}>
-          <label htmlFor="email" className="modal__form-label">
-            Email *
-          </label>
+          <label className="modal__form-label">Email *</label>
           <input
             type="email"
             className="modal__form-input"
@@ -57,9 +55,7 @@ const RegisterModal = ({
             onChange={handleChange}
             required
           />
-          <label htmlFor="password" className="modal__form-label">
-            Password *
-          </label>
+          <label className="modal__form-label">Password *</label>
           <input
             type="password"
             className="modal__form-input"
@@ -69,9 +65,7 @@ const RegisterModal = ({
             onChange={handleChange}
             required
           />
-          <label htmlFor="name" className="modal__form-label">
-            Name *
-          </label>
+          <label className="modal__form-label">Name *</label>
           <input
             type="text"
             className="modal__form-input"
@@ -80,9 +74,7 @@ const RegisterModal = ({
             value={data.name}
             onChange={handleChange}
           />
-          <label htmlFor="avatarUrl" className="modal__form-label">
-            Avatar URL *
-          </label>
+          <label className="modal__form-label">Avatar URL *</label>
           <input
             type="URL"
             className="modal__form-input"
