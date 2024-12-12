@@ -34,6 +34,9 @@
   color: #00000080;
   background-color: transparent;
   border: none;
+  position: absolute;
+  bottom: 44px;
+  right: 300px;
 }
 
 .modal_visible {
