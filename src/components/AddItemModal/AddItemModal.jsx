@@ -58,14 +58,20 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
       />
 
       <fieldset className="modal__radio-btns">
-        <legend className="modal__weather-caption">
+        <label className="modal__weather-caption" htmlFor="weather-hot">
           Select the weather type:
-        </legend>
+        </label>
         {["Hot", "Warm", "Cold"].map((type) => (
-          <label key={type} className="modal__label modal__label_type_radio">
+          <label
+            htmlFor={`weather-${type.toLowerCase()}`}
+            key={type}
+            className="modal__label modal__label_type_radio"
+          >
+            {/* {" "} */}
             <input
               type="radio"
               className="modal__radio-input"
+              id={`weather-${type.toLowerCase()}`}
               name="weather_type"
               value={type.toLowerCase()}
               checked={weather === type.toLowerCase()}

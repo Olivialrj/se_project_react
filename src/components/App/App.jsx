@@ -90,6 +90,7 @@ function App() {
     api
       .editProfile(updatedData)
       .then((newUserData) => {
+        console.log(newUserData);
         setCurrentUser(newUserData);
         console.log(newUserData);
         closeActiveModal();

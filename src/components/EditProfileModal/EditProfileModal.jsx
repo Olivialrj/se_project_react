@@ -4,7 +4,7 @@ import closeIcon from "../../assets/closeicon.svg";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const EditProfileModal = ({ handleEditProfile, onCloseModal, isOpen }) => {
-  const [data, setData] = useState({ name: "", avatar: "" });
+  const [data, setData] = useState({ name: "", avatarUrl: "" });
 
   // const handleChange = (e) => {
   //   // const { name, value } = e.target;
@@ -46,29 +46,31 @@ const EditProfileModal = ({ handleEditProfile, onCloseModal, isOpen }) => {
         <button className="modal__close" onClick={onClose}>
           <img src={closeIcon} alt="close-icon" className="modal__close-img" />
         </button> */}
-      <form className="modal__form" onSubmit={handleSubmit}>
-        <label className="modal__form-label">Name *</label>
-        <input
-          type="name"
-          className="modal__form-input"
-          id="update-name"
-          placeholder="Name"
-          value={data.name}
-          onChange={handleChange}
-        />
-        <label className="modal__form-label">Avatar *</label>
-        <input
-          type="url"
-          className="modal__form-input"
-          id="update-avatar"
-          placeholder="Avatar"
-          value={data.avatar}
-          onChange={handleChange}
-        />
-        {/* <button className="modal__button" type="submit">
+      <label htmlFor="update-name" className="modal__form-label">
+        Name *
+      </label>
+      <input
+        type="name"
+        className="modal__form-input"
+        id="update-name"
+        placeholder="Name"
+        value={data.name}
+        onChange={handleChange}
+      />
+      <label htmlFor="update-avatarUrl" className="modal__form-label">
+        Avatar *
+      </label>
+      <input
+        type="url"
+        className="modal__form-input"
+        id="update-avatarUrl"
+        placeholder="Avatar"
+        value={data.avatarUrl}
+        onChange={handleChange}
+      />
+      {/* <button className="modal__button" type="submit">
           Save changes
         </button> */}
-      </form>
     </ModalWithForm>
   );
 };
