@@ -50,6 +50,8 @@
   color: #00000080;
   border: none;
   background-color: transparent;
+  display: grid;
+  width: fit-content;
 }
 
 .modal_visible {

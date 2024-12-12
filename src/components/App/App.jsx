@@ -286,19 +286,19 @@ function App() {
           />
           <RegisterModal
             isOpen={activeModal === "register"}
-            onClose={closeActiveModal}
+            onCloseModal={closeActiveModal}
             handleRegistration={handleRegistration}
             handleLoginClick={handleLoginClick}
           />
           <LoginModal
             isOpen={activeModal === "login"}
-            onClose={closeActiveModal}
+            onCloseModal={closeActiveModal}
             handleLogin={handleLogin}
             handleRegisterClick={handleRegisterClick}
           />
           <EditProfileModal
             handleEditProfile={handleEditProfile}
-            onClose={closeActiveModal}
+            onCloseModal={closeActiveModal}
             isOpen={activeModal === "edit-profile"}
           />
         </CurrentTemperatureUnitContext.Provider>
