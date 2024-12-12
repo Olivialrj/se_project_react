@@ -1,5 +1,4 @@
 import { React, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
 import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -79,6 +78,7 @@ const RegisterModal = ({
         placeholder="Name"
         value={data.name}
         onChange={handleChange}
+        required
       />
       <label htmlFor="register-avatarUrl" className="modal__form-label">
         Avatar URL *
