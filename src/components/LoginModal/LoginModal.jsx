@@ -11,17 +11,6 @@ const LoginModal = ({
 }) => {
   const [data, setData] = useState({ email: "", password: "" });
 
-  // const handleChange = (e) => {
-  //   // const { name, value } = e.target;
-  //   // setData((prevData) => ({
-  //   //   ...prevData,
-  //   //   [name]: value,
-  //   setData((prevState) => ({
-  //     ...prevState,
-  //     [e.target.id]: event.target.value,
-  //   }));
-  // };
-
   const handleChange = (e) => {
     const { id, value } = e.target;
     const key = id.replace("login-", ""); // Strip "update-" to match the state keys
