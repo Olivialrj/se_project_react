@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://olivialrj.github.io/se_project_react/",
+  "homepage": "https://olivialrj.strangled.net",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
@@ -30,3 +30,5 @@
     "vite": "^5.3.1"
   }
 }
+
+
