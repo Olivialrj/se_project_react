@@ -48,7 +48,7 @@ const editProfile = ({ name, avatarUrl }) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, avatarUrl }),
+    body: JSON.stringify({ name, avatar: avatarUrl }),
   }).then(checkResponse);
 };
 

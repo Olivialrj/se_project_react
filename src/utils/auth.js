@@ -11,7 +11,7 @@ export const register = (email, password, name, avatarUrl) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password, name, avatarUrl }),
+    body: JSON.stringify({ email, password, name, avatar: avatarUrl }),
   }).then(checkResponse);
 };
 
