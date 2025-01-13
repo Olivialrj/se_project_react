@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -r ./dist/* olivialrj97@olivialrj.strangled.net:/home/olivialrj97/frontend"
   },
   "dependencies": {
     "mongoose": "^8.8.1",
@@ -30,5 +30,3 @@
     "vite": "^5.3.1"
   }
 }
-
-
