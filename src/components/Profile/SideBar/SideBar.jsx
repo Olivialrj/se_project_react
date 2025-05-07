@@ -6,9 +6,9 @@ import CurrentUserContext from "../../../contexts/CurrentUserContext";
 const SideBar = ({ handleEditProfileClick, handleLogout }) => {
   const currentUser = useContext(CurrentUserContext);
 
-  const renderAvatar = (avatarUrl, name) => {
-    if (avatarUrl) {
-      return <img src={avatarUrl} alt={name} className="sidebar__avatar" />;
+  const renderAvatar = (avatar, name) => {
+    if (avatar) {
+      return <img src={avatar} alt={name} className="sidebar__avatar" />;
     }
     const firstLetter = name ? name.charAt(0).toUpperCase() : "?";
     return <div className="sidebar__avatar-placeholder">{firstLetter}</div>;
@@ -16,7 +16,7 @@ const SideBar = ({ handleEditProfileClick, handleLogout }) => {
   return (
     <div className="sidebar">
       <div className="sidebar__profile">
-        {renderAvatar(currentUser.avatarUrl, currentUser.name)}
+        {renderAvatar(currentUser.avatar, currentUser.name)}
         <p className="sidebar__username"> {currentUser.name}</p>
       </div>
       <button

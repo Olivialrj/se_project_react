@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { useState, useRef } from "react";
 import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -8,19 +8,55 @@ const RegisterModal = ({
   isOpen,
   handleLoginClick,
 }) => {
-  const [data, setData] = useState({
+  const initialFormState = {
     email: "",
     password: "",
     name: "",
-    avatarUrl: "",
-  });
+    avatar: "",
+  };
 
-  // const handleChange = (event) => {
-  //   setData((prevState) => ({
-  //     ...prevState,
-  //     [event.target.id]: event.target.value, // Update specific field
-  //   }));
-  // };
+  const [data, setData] = useState(initialFormState);
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState("");
+  const fileInputRef = useRef(null);
+
+  const resetForm = () => {
+    setData(initialFormState);
+    setPreviewUrl("");
+    setError("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
+  const validateForm = () => {
+    if (!data.email) {
+      setError("Please enter your email");
+      return false;
+    }
+    if (!data.email.includes("@")) {
+      setError("Please enter a valid email address");
+      return false;
+    }
+    if (!data.password) {
+      setError("Please enter a password");
+      return false;
+    }
+    if (data.password.length < 6) {
+      setError("Password must be at least 6 characters long");
+      return false;
+    }
+    if (!data.name) {
+      setError("Please enter your name");
+      return false;
+    }
+    if (!data.avatarUrl) {
+      setError("Please select an avatar image");
+      return false;
+    }
+    return true;
+  };
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -29,21 +65,71 @@ const RegisterModal = ({
       ...prevState,
       [key]: value,
     }));
+    setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file type
+      if (!file.type.startsWith("image/")) {
+        setError("Please select an image file");
+        return;
+      }
+
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        setError("Image size should be less than 5MB");
+        return;
+      }
+
+      // Create preview URL
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+        setData((prev) => ({
+          ...prev,
+          avatarUrl: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleRegistration(data);
+    setError("");
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await handleRegistration(data);
+      resetForm();
+    } catch (err) {
+      console.error("Registration error:", err);
+      setError(err.message || "Registration failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleClose = () => {
+    resetForm();
+    onCloseModal();
   };
 
   return (
     <ModalWithForm
       title="Sign Up"
-      buttonText="Sign Up"
+      buttonText={isSubmitting ? "Signing up..." : "Sign Up"}
       isOpen={isOpen}
-      onClose={onCloseModal}
+      onClose={handleClose}
       handleSubmit={handleSubmit}
     >
+      {error && <div className="modal__error">{error}</div>}
       <label htmlFor="register-email" className="modal__form-label">
         Email *
       </label>
@@ -55,6 +141,7 @@ const RegisterModal = ({
         value={data.email}
         onChange={handleChange}
         required
+        disabled={isSubmitting}
       />
       <label htmlFor="register-password" className="modal__form-label">
         Password *
@@ -67,6 +154,7 @@ const RegisterModal = ({
         value={data.password}
         onChange={handleChange}
         required
+        disabled={isSubmitting}
       />
       <label htmlFor="register-name" className="modal__form-label">
         Name *
@@ -79,27 +167,45 @@ const RegisterModal = ({
         value={data.name}
         onChange={handleChange}
         required
+        disabled={isSubmitting}
       />
-      <label htmlFor="register-avatarUrl" className="modal__form-label">
-        Avatar URL *
+      <label htmlFor="register-avatar" className="modal__form-label">
+        Avatar *
       </label>
-      <input
-        type="URL"
-        className="modal__form-input"
-        id="register-avatarUrl"
-        placeholder="Avatar URL"
-        value={data.avatarUrl}
-        onChange={handleChange}
-        required
-      />
+      <div className="modal__avatar-upload">
+        <input
+          type="file"
+          className="modal__file-input"
+          id="register-avatar"
+          accept="image/*"
+          onChange={handleFileChange}
+          ref={fileInputRef}
+          disabled={isSubmitting}
+        />
+        <button
+          type="button"
+          className="modal__upload-button"
+          onClick={() => fileInputRef.current?.click()}
+          disabled={isSubmitting}
+        >
+          Choose File
+        </button>
+        {previewUrl && (
+          <div className="modal__preview">
+            <img
+              src={previewUrl}
+              alt="Avatar preview"
+              className="modal__preview-image"
+            />
+          </div>
+        )}
+      </div>
       <div className="modal__buttons">
-        {/* <button className="modal__button" type="submit">
-              Sign Up
-            </button> */}
         <button
           type="button"
           onClick={handleLoginClick}
           className="modal__login-link"
+          disabled={isSubmitting}
         >
           or Log in
         </button>

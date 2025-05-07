@@ -1,14 +1,20 @@
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { useEffect } from "react";
 import "./EditProfileModal.css";
 import closeIcon from "../../assets/closeicon.svg";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const EditProfileModal = ({ handleEditProfile, onCloseModal, isOpen }) => {
+  const initialFormState = {
+    name: "",
+    avatar: "",
+  };
   const currentUser = useContext(CurrentUserContext);
-  const [data, setData] = useState({ name: "", avatarUrl: "" });
+  const [data, setData] = useState(initialFormState);
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState("");
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -18,6 +24,43 @@ const EditProfileModal = ({ handleEditProfile, onCloseModal, isOpen }) => {
       });
     }
   }, [isOpen, currentUser]);
+
+  const resetForm = () => {
+    setData(initialFormState);
+    setPreviewUrl("");
+    setError("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file type
+      if (!file.type.startsWith("image/")) {
+        setError("Please select an image file");
+        return;
+      }
+
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        setError("Image size should be less than 5MB");
+        return;
+      }
+
+      // Create preview URL
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+        setData((prev) => ({
+          ...prev,
+          avatarUrl: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   // const handleChange = (e) => {
   //   // const { name, value } = e.target;
@@ -39,9 +82,35 @@ const EditProfileModal = ({ handleEditProfile, onCloseModal, isOpen }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleEditProfile(data);
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await handleEditProfile(data);
+      resetForm();
+    } catch (err) {
+      console.error("Update error:", err);
+      setError(err.message || "Update failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const validateForm = () => {
+    if (!data.name) {
+      setError("Please enter your name");
+      return false;
+    }
+    if (!data.avatarUrl) {
+      setError("Please select an avatar image");
+      return false;
+    }
+    return true;
   };
 
   return (
@@ -69,17 +138,37 @@ const EditProfileModal = ({ handleEditProfile, onCloseModal, isOpen }) => {
         value={data.name}
         onChange={handleChange}
       />
-      <label htmlFor="update-avatarUrl" className="modal__form-label">
+      <label htmlFor="register-avatar" className="modal__form-label">
         Avatar *
       </label>
-      <input
-        type="url"
-        className="modal__form-input"
-        id="update-avatarUrl"
-        placeholder="Avatar"
-        value={data.avatarUrl}
-        onChange={handleChange}
-      />
+      <div className="modal__avatar-upload">
+        <input
+          type="file"
+          className="modal__file-input"
+          id="register-avatar"
+          accept="image/*"
+          onChange={handleFileChange}
+          ref={fileInputRef}
+          disabled={isSubmitting}
+        />
+        <button
+          type="button"
+          className="modal__upload-button"
+          onClick={() => fileInputRef.current?.click()}
+          disabled={isSubmitting}
+        >
+          Choose File
+        </button>
+        {previewUrl && (
+          <div className="modal__preview">
+            <img
+              src={previewUrl}
+              alt="Avatar preview"
+              className="modal__preview-image"
+            />
+          </div>
+        )}
+      </div>
       {/* <button className="modal__button" type="submit">
           Save changes
         </button> */}

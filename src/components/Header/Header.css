@@ -24,6 +24,7 @@
 .header__right {
   display: flex;
   min-width: fit-content;
+  gap: 10px;
 }
 .header__left {
   display: flex;

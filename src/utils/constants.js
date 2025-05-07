@@ -99,9 +99,39 @@ export const defaultClothingItems = [
   },
 ];
 
-export const coordinates = {
+// Default coordinates (Los Angeles) as fallback
+export const defaultCoordinates = {
   latitude: 34.052235,
   longitude: -118.243683,
+};
+
+// Function to get user's current location
+export const getUserLocation = () => {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      console.log("Geolocation is not supported by your browser");
+      resolve(defaultCoordinates);
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        resolve({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
+      (error) => {
+        console.error("Error getting location:", error);
+        resolve(defaultCoordinates);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      }
+    );
+  });
 };
 
 export const APIKey = "85c9fcc1b066a048f2697b6c3308277d";

@@ -44,21 +44,25 @@
   transform: translateX(2px); /* Move 2px to the right on hover */
 }
 
-.switch__temp-F {
+.switch__temp-F,
+.switch__temp-C {
   position: absolute;
-  top: -10px;
-  left: 38px;
+  top: 10%;
+  transform: translateY(-50%);
   color: #00000080;
+  font-size: 14px;
+}
+
+.switch__temp-F {
+  left: 38px;
 }
 
 .switch__temp-C {
-  position: absolute;
-  top: -10px;
   left: 10px;
-  color: #00000080;
 }
 
 .switch__active {
   font-size: 14px;
   color: white;
+  font-weight: bold;
 }

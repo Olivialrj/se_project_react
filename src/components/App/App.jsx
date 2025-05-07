@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
-import { coordinates, APIKey } from "../../utils/constants";
+import {
+  defaultCoordinates,
+  getUserLocation,
+  APIKey,
+} from "../../utils/constants";
 import Main from "../Main/Main";
 import Header from "../Header/Header";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -26,6 +30,7 @@ function App() {
     temp: { F: 999 },
     city: "",
   });
+  const [userLocation, setUserLocation] = useState(defaultCoordinates);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [selectedItemId, setSelectedItemId] = useState(null);
@@ -110,15 +115,45 @@ function App() {
       .catch(console.error);
   };
 
-  const handleRegistration = ({ email, password, name, avatarUrl }) => {
-    auth
-      .register(email, password, name, avatarUrl)
+  const handleRegistration = ({ email, password, name, avatar }) => {
+    // Convert the base64 image data to a Blob
+    const imageBlob = dataURLtoBlob(avatar);
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("name", name);
+    formData.append("avatar", imageBlob, "avatar.jpg");
+
+    return auth
+      .register(formData)
       .then((userData) => {
         setCurrentUser(userData);
         setIsLoggedIn(true);
         closeActiveModal();
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Registration error:", error);
+        console.log("Registration attempt with data:", {
+          email,
+          password: "***",
+          name,
+          avatar: "Image data",
+        });
+        throw error;
+      });
+  };
+
+  // Helper function to convert base64 to Blob
+  const dataURLtoBlob = (dataURL) => {
+    const arr = dataURL.split(",");
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], { type: mime });
   };
 
   const handleLogin = ({ email, password }) => {
@@ -128,7 +163,6 @@ function App() {
     auth
       .authorisation(email, password)
       .then((data) => {
-        console.log(data);
         if (data.token) {
           setToken(data.token);
           setCurrentUser(data.user);
@@ -192,13 +226,21 @@ function App() {
   }, [activeModal]);
 
   useEffect(() => {
-    getWeather(coordinates, APIKey)
+    // Get user's location when component mounts
+    getUserLocation().then((coords) => {
+      setUserLocation(coords);
+    });
+  }, []);
+
+  useEffect(() => {
+    // Update weather data when user location changes
+    getWeather(userLocation, APIKey)
       .then((res) => {
         const filteredData = filterWeather(res);
         setWeatherData(filteredData);
       })
       .catch(console.error);
-  }, []);
+  }, [userLocation]);
 
   useEffect(() => {
     api

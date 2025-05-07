@@ -34,9 +34,7 @@ function ItemCard({ item, onCardClick, handleCardLike }) {
               isLiked ? "card__like-button_active" : ""
             }`}
             onClick={handleLike}
-          >
-            {/* {isLiked ? "Unlike" : "Like"} */}
-          </button>
+          ></button>
         )}
       </div>
       <img

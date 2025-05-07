@@ -19,9 +19,9 @@ function Header({
     day: "numeric",
   });
 
-  const renderAvatar = (avatarUrl, name) => {
-    if (avatarUrl) {
-      return <img src={avatarUrl} alt={name} className="header__avatar" />;
+  const renderAvatar = (avatar, name) => {
+    if (avatar) {
+      return <img src={avatar} alt={name} className="header__avatar" />;
     }
     const firstLetter = name ? name.charAt(0).toUpperCase() : "?";
     return <div className="header__avatar-placeholder">{firstLetter}</div>;
@@ -52,7 +52,7 @@ function Header({
             <NavLink to="/profile" className="test">
               <div className="header__user-container">
                 <p className="header__username">{currentUser.name}</p>
-                {renderAvatar(currentUser.avatarUrl, currentUser.name)}
+                {renderAvatar(currentUser.avatar, currentUser.name)}
               </div>
             </NavLink>
           </>

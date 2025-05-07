@@ -1,11 +1,26 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #f3f3f3;
+}
+
 .page {
   background-color: #f3f3f3;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 150px; /* Add padding to account for footer height */
 }
 
 .page__content {
   max-width: 1360px;
   margin: 0 auto;
   padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
