@@ -51,7 +51,7 @@ const RegisterModal = ({
       setError("Please enter your name");
       return false;
     }
-    if (!data.avatarUrl) {
+    if (!data.avatar) {
       setError("Please select an avatar image");
       return false;
     }
@@ -89,7 +89,7 @@ const RegisterModal = ({
         setPreviewUrl(reader.result);
         setData((prev) => ({
           ...prev,
-          avatarUrl: reader.result,
+          avatar: reader.result,
         }));
       };
       reader.readAsDataURL(file);
