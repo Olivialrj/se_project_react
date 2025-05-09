@@ -1,9 +1,10 @@
 import { getToken } from "./token";
 
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://api.olivialrj.strangled.net"
-    : "http://localhost:3000";
+// const baseUrl =
+//   process.env.NODE_ENV === "production"
+//     ? "https://api.olivialrj.strangled.net"
+//     : "http://localhost:3000";
+const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);

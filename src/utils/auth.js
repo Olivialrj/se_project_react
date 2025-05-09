@@ -1,9 +1,7 @@
 import { checkResponse } from "./api";
 
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://api.olivialrj.strangled.net"
-    : "http://localhost:3000";
+const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const VITE_API_URL = "https://express-backend.onrender.com";
 
 export const register = (formData) => {
   return fetch(`${baseUrl}/signup`, {
